@@ -20,7 +20,7 @@ readFile('./texts/first.txt', 'utf-8',(err, result) => {
                 return;
             }
             console.log(result);
-        }, {flag: 'a'});
+        });
     })
 });
 
