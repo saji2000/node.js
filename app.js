@@ -1,8 +1,8 @@
 const {readFile, writeFile} = require('fs');
 
-const first = readFileSync('./texts/first.txt', 'utf8');
+const first = readFile('./texts/first.txt', 'utf8');
 
-const second = readFileSync('./texts/second.txt', 'utf8');
+const second = readFile('./texts/second.txt', 'utf8');
 
 console.log(first, second);
 
