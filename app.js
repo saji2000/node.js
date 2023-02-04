@@ -13,7 +13,14 @@ readFile('./texts/first.txt', 'utf-8',(err, result) => {
         }
         const second = result;
 
-        writeFile('./texts/result.txt', `Here is the result: ${first}, ${second} \n`, {flag: 'a'});
+        writeFile('./texts/result.txt', `Here is the result: ${first}, ${second} \n`,
+        (err, result) => {
+            if(err){
+                console.log(err);
+                return;
+            }
+            console.log(result);
+        }, {flag: 'a'});
     })
 });
 
