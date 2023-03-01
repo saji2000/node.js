@@ -1,14 +1,9 @@
-const http = require('http');
-const {v4: uuidv4} = require('uuid');
+const express = require('express');
 
-console.log(uuidv4());
+const app = express();
 
-// const server = http.createServer((req, res) => {
-//     res.statusCode = 200;
-//     res.setHeader('Content-Type', 'text/html');
-//     res.end('<h1>Hello World!</h1>');
-// });
+const PORT = 3000;
 
-// server.listen(3000, '127.0.0.1', () => {
-//     console.log('Server running');
-// });
+app.listen(PORT, () => {
+    console.log('listening on port');
+});
