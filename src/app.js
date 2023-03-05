@@ -18,7 +18,11 @@ const json = {
 }
 
 app.get('/', (req, res) => {
-    res.send({"data": json});
+    res.send("Hello");
+});
+
+app.get('/api', (req, res) => {
+    res.send({"data": json.friends});
 });
 
 app.post('/', (req, res) => {
