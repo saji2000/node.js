@@ -4,8 +4,21 @@ const app = express();
 
 const PORT = 3000;
 
+const json = {
+    "name": "sajad",
+    "age": "22",
+    "friends":[
+        {
+            "name": "hasan"
+        },
+        {
+            "name": "navid"
+        }
+    ]
+}
+
 app.get('/', (req, res) => {
-    res.send("Hello World!");
+    res.send({"data": json});
 });
 
 app.post('/', (req, res) => {
