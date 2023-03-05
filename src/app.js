@@ -1,6 +1,10 @@
 const express = require('express');
 
+const mongoose = require('mongoose');
+
 const app = express();
+
+mongoose.set("strictQuery", false);
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -36,6 +40,19 @@ app.post('/', (req, res) => {
     res.send("This is a post request!");
 });
 
-app.listen(PORT, () => {
-    console.log('listening on port');
-});
+
+
+const start = async() => {
+    try{
+        await mongoose.connect('mongodb+srv://sajadx1379:h350XyuUBlZGcWGC@cluster0.20er889.mongodb.net/?retryWrites=true&w=majority');
+
+        app.listen(PORT, () => {
+            console.log('listening on port');
+        });
+    }
+    catch(e){
+        console.log(e.message);
+    }
+}
+
+start();
