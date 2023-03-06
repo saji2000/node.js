@@ -2,6 +2,10 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 
+const dotenv = require('dotenv');
+
+// dotenv.config();
+
 const app = express();
 
 mongoose.set("strictQuery", false);
@@ -9,7 +13,13 @@ mongoose.set("strictQuery", false);
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-const PORT = 3000;
+if(process.env.NODE_ENV !== 'production'){
+    dotenv.config();
+}
+
+const PORT = process.env.PORT || 3000;
+
+const CONNECTION = process.env.CONNECTION;
 
 const json = 
     [
@@ -44,10 +54,10 @@ app.post('/', (req, res) => {
 
 const start = async() => {
     try{
-        await mongoose.connect('mongodb+srv://sajadx1379:h350XyuUBlZGcWGC@cluster0.20er889.mongodb.net/?retryWrites=true&w=majority');
+        await mongoose.connect(CONNECTION);
 
         app.listen(PORT, () => {
-            console.log('listening on port');
+            console.log('listening on port ' + PORT);
         });
     }
     catch(e){
