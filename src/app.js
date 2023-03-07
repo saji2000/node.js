@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
 
-// dotenv.config();
-
 const app = express();
 
 mongoose.set("strictQuery", false);
