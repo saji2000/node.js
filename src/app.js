@@ -48,8 +48,6 @@ app.post('/', (req, res) => {
     res.send("This is a post request!");
 });
 
-
-
 const start = async() => {
     try{
         await mongoose.connect(CONNECTION);
