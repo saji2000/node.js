@@ -45,7 +45,7 @@ app.post('/api/customers', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    res.send("This is a post request!");
+    res.send("This is a post request");
 });
 
 const start = async() => {
