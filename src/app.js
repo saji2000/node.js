@@ -38,14 +38,15 @@ const customer = new Customer({
     industry: "marketing"
 });
 
-customer.save();
+// customer.save();
 
 app.get('/', (req, res) => {
     res.send(customer);
 });
 
-app.get('/api/customers', (req, res) => {
-    res.send({"data": json.friends});
+app.get('/api/customers', async (req, res) => {
+    const result = await Customer.find();
+    res.send({"data": result});
 });
 
 app.post('/api/customers', (req, res) => {
