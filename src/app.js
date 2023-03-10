@@ -55,6 +55,12 @@ app.get('/api/customers', async (req, res) => {
     }
 });
 
+app.get('/api/customers/:id', async (req, res) => {
+    res.json({requestParams: req.params,
+    requestQuery: req.query
+    });
+});
+
 app.post('/api/customers', (req, res) => {
     console.log(req.body);
     const customer = new Customer(req.body);
