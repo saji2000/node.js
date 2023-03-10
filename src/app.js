@@ -56,9 +56,25 @@ app.get('/api/customers', async (req, res) => {
 });
 
 app.get('/api/customers/:id', async (req, res) => {
-    res.json({requestParams: req.params,
-    requestQuery: req.query
+    console.log({
+        requestParams: req.params,
+        requestQuery: req.query
     });
+    try{
+        const customerId = req.params.id;
+        console.log(customerId);
+        const customer = await Customer.findById(customerId);
+        console.log(customer);
+        if(!customer){
+            res.status(404).json({error: "not found"});
+        }
+        else{
+            res.json(customer);
+        }
+    }
+    catch(e){
+        res.status(500).json({error: e});
+    }
 });
 
 app.post('/api/customers', (req, res) => {
