@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
 
+const Customer = require('./models/customer');
+
 const app = express();
 
 mongoose.set("strictQuery", false);
@@ -31,8 +33,15 @@ const json =
         }
 ];
 
+const customer = new Customer({
+    name: "sajad",
+    industry: "marketing"
+});
+
+customer.save();
+
 app.get('/', (req, res) => {
-    res.send("Hello");
+    res.send(customer);
 });
 
 app.get('/api/customers', (req, res) => {
