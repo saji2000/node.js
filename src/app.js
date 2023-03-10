@@ -34,24 +34,32 @@ const json =
 ];
 
 const customer = new Customer({
-    name: "sajad",
+    name: "John",
     industry: "marketing"
 });
 
 // customer.save();
 
 app.get('/', (req, res) => {
-    res.send(customer);
+    res.send("Welcome!");
 });
 
 app.get('/api/customers', async (req, res) => {
-    const result = await Customer.find();
-    res.send({"data": result});
+    console.log(await mongoose.connection.db.listCollections().toArray());
+    try{
+        const result = await Customer.find();
+        res.json({"data": result});
+    }
+    catch(e){
+        res.status(500).json({error: e.message});
+    }
 });
 
 app.post('/api/customers', (req, res) => {
     console.log(req.body);
-    res.send(req.body);
+    const customer = new Customer(req.body);
+    customer.save();
+    res.status(201).json({customer});
 });
 
 app.post('/', (req, res) => {
