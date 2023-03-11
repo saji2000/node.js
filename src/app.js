@@ -75,10 +75,27 @@ app.get('/api/customers/:id', async (req, res) => {
 
 // updating a record
 app.put('/api/customers/:id', async(req, res)=>{
-    const customerId = req.params.id;
-    const result = await Customer.replaceOne({_id: customerId}, req.body);
-    console.log(result);
-    res.json({updatedCount: result.modifiedCount});
+    try{
+        const customerId = req.params.id;
+        const result = await Customer.replaceOne({_id: customerId}, req.body);
+        console.log(result);
+        res.json({updatedCount: result.modifiedCount});
+    }
+    catch(e){
+        res.status(500).json({error: e});
+    }
+});
+
+// delete data
+app.delete('/api/customers/:id', async (req, res) => {
+    try{
+        const customerId = req.params.id;
+        const result = await Customer.deleteOne({_id: customerId});
+        res.json({deletedCount: result.deletedCount});
+    }
+    catch(e){
+        res.status(500).json({error: e});
+    }
 });
 
 app.post('/api/customers', (req, res) => {
