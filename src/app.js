@@ -73,6 +73,14 @@ app.get('/api/customers/:id', async (req, res) => {
     }
 });
 
+// updating a record
+app.put('/api/customers/:id', async(req, res)=>{
+    const customerId = req.params.id;
+    const result = await Customer.replaceOne({_id: customerId}, req.body);
+    console.log(result);
+    res.json({updatedCount: result.modifiedCount});
+});
+
 app.post('/api/customers', (req, res) => {
     console.log(req.body);
     const customer = new Customer(req.body);
