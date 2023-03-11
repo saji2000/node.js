@@ -1,11 +1,7 @@
 const express = require('express');
-
 const mongoose = require('mongoose');
-
 const dotenv = require('dotenv');
-
 const Customer = require('./models/customer');
-
 const app = express();
 
 mongoose.set("strictQuery", false);
