@@ -84,6 +84,7 @@ app.put('/api/customers/:id', async(req, res)=>{
         res.json({updatedCount: result});
     }
     catch(e){
+        console.log("error");
         res.status(500).json({error: e});
     }
 });
