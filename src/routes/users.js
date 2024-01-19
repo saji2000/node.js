@@ -43,8 +43,14 @@ router.get("/:email", (req, res) => {
 
 // POST request: Create a new user
 router.post("/", (req, res) => {
-  // Copy the code here
-  res.send("Yet to be implemented"); //This line is to be replaced with actual return value
+  const { firstName, lastName, email, DOB } = req.body;
+
+  if (users.find((user) => user.email === email)) {
+    res.status(400).send({ message: "User already exists" });
+  }
+
+  users.push({ firstName, lastName, email, DOB });
+  res.status(200).send({ message: "User created successfully" });
 });
 
 // PUT request: Update the details of a user by email ID
